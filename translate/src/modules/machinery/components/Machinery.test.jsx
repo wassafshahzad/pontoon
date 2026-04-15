@@ -77,4 +77,60 @@ describe('<Machinery>', () => {
     const { getByRole } = mountMachinery([], { input: 'test', query: 'test' });
     getByRole('button');
   });
+
+  it('shows skeleton loader when machinery is fetching and no translations exist', () => {
+    const { getByTestId } = render(
+      <MockLocalizationProvider resources={[]}>
+        <MachineryTranslations.Provider
+          value={{ fetching: true, source: '', translations: [] }}
+        >
+          <SearchData.Provider
+            value={{
+              input: '',
+              query: '',
+              page: 1,
+              fetching: false,
+              results: [],
+              hasMore: false,
+              setInput: () => {},
+              getResults: () => {},
+            }}
+          >
+            <Machinery entity={{ pk: 42 }} />
+          </SearchData.Provider>
+        </MachineryTranslations.Provider>
+      </MockLocalizationProvider>,
+    );
+    getByTestId('skeleton-loader');
+  });
+
+  it('hides machinery skeleton loader when translations already loaded', () => {
+    const { queryByTestId } = render(
+      <MockLocalizationProvider resources={[]}>
+        <MachineryTranslations.Provider
+          value={{
+            fetching: true,
+            source: 'source',
+            translations: [{ original: '1', translation: 'one', sources: [] }],
+          }}
+        >
+          <SearchData.Provider
+            value={{
+              input: '',
+              query: '',
+              page: 1,
+              fetching: false,
+              results: [],
+              hasMore: false,
+              setInput: () => {},
+              getResults: () => {},
+            }}
+          >
+            <Machinery entity={{ pk: 42 }} />
+          </SearchData.Provider>
+        </MachineryTranslations.Provider>
+      </MockLocalizationProvider>,
+    );
+    expect(queryByTestId('skeleton-loader')).toBeNull();
+  });
 });

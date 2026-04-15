@@ -104,7 +104,9 @@ export function MachineryProvider({
       const promises: Promise<void>[] = [];
 
       if (pk) {
-        promises.push(fetchTranslationMemory(plain, locale, pk).then(addResults));
+        promises.push(
+          fetchTranslationMemory(plain, locale, pk).then(addResults),
+        );
       }
 
       // Only make requests to paid services if user is authenticated

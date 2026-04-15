@@ -17,7 +17,11 @@ import { MachineryTranslationComponent } from './MachineryTranslation';
  * third-party Machine Translation.
  */
 export function Machinery(): React.ReactElement<'section'> {
-  const { fetching: machineryFetching, source, translations } = useContext(MachineryTranslations);
+  const {
+    fetching: machineryFetching,
+    source,
+    translations,
+  } = useContext(MachineryTranslations);
   const { fetching, hasMore, input, query, results, setInput, getResults } =
     useContext(SearchData);
 
