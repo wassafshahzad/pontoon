@@ -26,7 +26,7 @@ const mountMachinery = (translations, search) =>
       ]}
     >
       <MachineryTranslations.Provider
-        value={{ source: 'source', translations }}
+        value={{ fetching: false, source: 'source', translations }}
       >
         <SearchData.Provider
           value={{

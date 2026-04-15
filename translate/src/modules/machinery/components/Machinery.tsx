@@ -17,7 +17,7 @@ import { MachineryTranslationComponent } from './MachineryTranslation';
  * third-party Machine Translation.
  */
 export function Machinery(): React.ReactElement<'section'> {
-  const { source, translations } = useContext(MachineryTranslations);
+  const { fetching: machineryFetching, source, translations } = useContext(MachineryTranslations);
   const { fetching, hasMore, input, query, results, setInput, getResults } =
     useContext(SearchData);
 
@@ -78,6 +78,9 @@ export function Machinery(): React.ReactElement<'section'> {
             />
           ))}
         </ul>
+        {machineryFetching && translations.length === 0 && (
+          <SkeletonLoader items={[]} />
+        )}
         <ul>
           {results.map((result, index) => (
             <MachineryTranslationComponent
