@@ -1,7 +1,6 @@
 import React from 'react';
 
 import '~/modules/loaders/components/SkeletonLoader.css';
-import './MachineryTranslation.css';
 
 export function MachinerySkeletonLoader({
   items,
@@ -16,12 +15,12 @@ export function MachinerySkeletonLoader({
 
   return (
     <ul
-      className='skeleton-loader machinery-skeleton'
+      className='skeleton-loader machinery-skeleton entities'
       data-testid='machinery-skeleton-loader'
       ref={sentryRef}
     >
       {list.map((i) => (
-        <li className='translation' key={i}>
+        <li className='machinery-item-skeleton' key={i}>
           <header>
             <span className='skeleton-bar' />
           </header>

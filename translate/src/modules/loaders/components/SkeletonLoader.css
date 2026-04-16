@@ -31,15 +31,28 @@
   margin: 0;
 }
 
-.machinery-skeleton .translation p {
+.machinery-skeleton .machinery-item-skeleton {
+  border-bottom: 1px solid var(--main-border-1);
+  padding: 10px;
+}
+
+.machinery-skeleton .machinery-item-skeleton p {
   background-color: var(--translation-secondary-color);
+  margin-bottom: 8px;
 }
 
-.machinery-skeleton .translation p.suggestion {
+.machinery-skeleton .machinery-item-skeleton p.suggestion {
   width: 75%;
+  margin-bottom: 0;
 }
 
-.machinery-skeleton .translation header .skeleton-bar {
+.machinery-skeleton .machinery-item-skeleton header {
+  display: block;
+  padding: 1px 0 5px;
+  text-align: right;
+}
+
+.machinery-skeleton .machinery-item-skeleton header .skeleton-bar {
   background-color: var(--translation-secondary-color);
   display: inline-block;
   height: 0.6875rem;
