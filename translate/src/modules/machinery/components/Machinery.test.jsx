@@ -101,7 +101,7 @@ describe('<Machinery>', () => {
         </MachineryTranslations.Provider>
       </MockLocalizationProvider>,
     );
-    getByTestId('skeleton-loader');
+    getByTestId('machinery-skeleton-loader');
   });
 
   it('hides machinery skeleton loader when translations already loaded', () => {
@@ -131,6 +131,6 @@ describe('<Machinery>', () => {
         </MachineryTranslations.Provider>
       </MockLocalizationProvider>,
     );
-    expect(queryByTestId('skeleton-loader')).toBeNull();
+    expect(queryByTestId('machinery-skeleton-loader')).toBeNull();
   });
 });
