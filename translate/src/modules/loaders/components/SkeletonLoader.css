@@ -23,6 +23,29 @@
   display: inline-block;
 }
 
+/* Machinery skeleton */
+
+.machinery-skeleton {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.machinery-skeleton .translation p {
+  background-color: var(--translation-secondary-color);
+}
+
+.machinery-skeleton .translation p.suggestion {
+  width: 75%;
+}
+
+.machinery-skeleton .translation header .skeleton-bar {
+  background-color: var(--translation-secondary-color);
+  display: inline-block;
+  height: 0.6875rem;
+  width: 40%;
+}
+
 @keyframes fading {
   0% {
     opacity: 0.1;

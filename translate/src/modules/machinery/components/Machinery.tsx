@@ -4,7 +4,7 @@ import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { MachineryTranslations } from '~/context/MachineryTranslations';
 import { SearchData } from '~/context/SearchData';
 
-import { SkeletonLoader } from '~/modules/loaders';
+import { MachinerySkeletonLoader } from './MachinerySkeletonLoader';
 
 import './Machinery.css';
 import { MachineryTranslationComponent } from './MachineryTranslation';
@@ -83,7 +83,7 @@ export function Machinery(): React.ReactElement<'section'> {
           ))}
         </ul>
         {machineryFetching && translations.length === 0 && (
-          <SkeletonLoader items={[]} />
+          <MachinerySkeletonLoader items={[]} />
         )}
         <ul>
           {results.map((result, index) => (
@@ -96,7 +96,7 @@ export function Machinery(): React.ReactElement<'section'> {
           ))}
         </ul>
         {(fetching || hasMore) && (
-          <SkeletonLoader items={results} sentryRef={sentryRef} />
+          <MachinerySkeletonLoader items={results} sentryRef={sentryRef} />
         )}
       </div>
     </section>
