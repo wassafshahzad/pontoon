@@ -4,7 +4,7 @@ import useInfiniteScroll from 'react-infinite-scroll-hook';
 import { MachineryTranslations } from '~/context/MachineryTranslations';
 import { SearchData } from '~/context/SearchData';
 
-import { MachinerySkeletonLoader } from '../../loaders/components/MachinerySkeletonLoader';
+import { MachinerySkeletonLoader } from '~/modules/loaders/components/MachinerySkeletonLoader';
 
 import './Machinery.css';
 import { MachineryTranslationComponent } from './MachineryTranslation';

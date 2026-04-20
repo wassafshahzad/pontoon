@@ -3,8 +3,8 @@ import React from 'react';
 import './MachinerySkeletonLoader.css';
 
 export function MachinerySkeletonLoader({
-  items,
   sentryRef,
+  items,
 }: {
   items: unknown[];
   sentryRef?: React.Ref<HTMLUListElement>;
@@ -15,7 +15,7 @@ export function MachinerySkeletonLoader({
 
   return (
     <ul
-      className={`machinery-skeleton-loader${firstLoad ? '' : ' scroll'}`}
+      className={`machinery-skeleton-loader ${firstLoad ? null : 'scroll'}`}
       data-testid='machinery-skeleton-loader'
       ref={sentryRef}
     >
