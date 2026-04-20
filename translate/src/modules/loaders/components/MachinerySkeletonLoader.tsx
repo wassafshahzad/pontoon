@@ -6,8 +6,8 @@ export function MachinerySkeletonLoader({
   sentryRef,
   items,
 }: {
-  items: unknown[];
   sentryRef?: React.Ref<HTMLUListElement>;
+  items: unknown[];
 }) {
   const firstLoad = items.length === 0;
   const itemCount = firstLoad ? 30 : 2;
