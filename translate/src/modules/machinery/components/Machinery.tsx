@@ -81,9 +81,7 @@ export function Machinery(): React.ReactElement<'section'> {
             />
           ))}
         </ul>
-        {machineryFetching && translations.length === 0 && (
-          <MachinerySkeletonLoader items={[]} />
-        )}
+        {machineryFetching && <MachinerySkeletonLoader items={[]} />}
         <ul>
           {results.map((result, index) => (
             <MachineryTranslationComponent

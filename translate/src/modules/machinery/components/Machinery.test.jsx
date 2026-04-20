@@ -104,8 +104,8 @@ describe('<Machinery>', () => {
     getByTestId('machinery-skeleton-loader');
   });
 
-  it('hides machinery skeleton loader when translations already loaded', () => {
-    const { queryByTestId } = render(
+  it('shows skeleton loader when machinery is fetching even if translations already exist', () => {
+    const { getByTestId } = render(
       <MockLocalizationProvider resources={[]}>
         <MachineryTranslations.Provider
           value={{
@@ -131,6 +131,6 @@ describe('<Machinery>', () => {
         </MachineryTranslations.Provider>
       </MockLocalizationProvider>,
     );
-    expect(queryByTestId('machinery-skeleton-loader')).toBeNull();
+    getByTestId('machinery-skeleton-loader');
   });
 });
