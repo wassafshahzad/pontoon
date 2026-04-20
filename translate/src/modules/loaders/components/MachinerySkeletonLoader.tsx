@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '~/modules/loaders/components/SkeletonLoader.css';
+import './MachinerySkeletonLoader.css';
 
 export function MachinerySkeletonLoader({
   items,
@@ -15,7 +15,7 @@ export function MachinerySkeletonLoader({
 
   return (
     <ul
-      className='skeleton-loader machinery-skeleton entities'
+      className={`machinery-skeleton-loader${firstLoad ? '' : ' scroll'}`}
       data-testid='machinery-skeleton-loader'
       ref={sentryRef}
     >
