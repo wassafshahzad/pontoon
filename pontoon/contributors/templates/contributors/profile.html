@@ -123,6 +123,15 @@
               method="POST"
             >
               {% csrf_token %}
+              <h4 class="subtitle account-status-heading">
+                {{ 'Disable' if contributor.is_active else 'Enable' }} account
+              </h4>
+              <textarea
+                class="text-area"
+                name="action_reason"
+                placeholder="Reason (optional)"
+                rows="5"
+              ></textarea>
               {% if contributor.is_active %}
                 <button class="button" type="submit">
                   <i class="icon fas fa-lock fa-sm"></i>Disable
@@ -197,6 +206,26 @@
               <span>{{ contributor.date_joined|format_datetime("date") }}</span>
             </div>
           </div>
+          {% if ban_activity and not contributor.is_active and is_admin %}
+            <div class="block">
+              <h4 class="subtitle">Latest ban</h4>
+              <div class="item-with-icon">
+                <span class="icon fas fa-ban"></span>
+                <span
+                  >{{ ban_activity.created_at|format_datetime("date") }}</span
+                >
+                {% if ban_activity.performed_by %}
+                  <span
+                    >by
+                    {{ ban_activity.performed_by.first_name or ban_activity.performed_by.username }}</span
+                  >
+                {% endif %}
+                {% if ban_activity.action_reason %}
+                  <span>— {{ ban_activity.action_reason }}</span>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
         </div>
 
         {% if translator_for_locales or manager_for_locales or contact_for.exists() or contributor.is_superuser %}

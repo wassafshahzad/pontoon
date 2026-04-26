@@ -418,9 +418,7 @@ $('#account-status-form').on('submit', function (event) {
   $.ajax({
     url: form.attr('action'),
     type: 'POST',
-    data: {
-      csrfmiddlewaretoken: $('body').data('csrf'),
-    },
+    data: form.serialize(),
     success: function () {
       location.reload();
     },

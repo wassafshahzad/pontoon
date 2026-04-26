@@ -32,7 +32,7 @@ from django.views.generic import TemplateView
 
 from pontoon.api.models import PersonalAccessToken
 from pontoon.base import forms
-from pontoon.base.models import Locale, Project, UserProfile
+from pontoon.base.models import Locale, Project, UserBanLog, UserProfile
 from pontoon.base.utils import get_locale_or_redirect, require_AJAX
 from pontoon.contributors import utils
 from pontoon.messaging.emails import send_verification_email
@@ -126,12 +126,31 @@ def contributor(request, user):
         "contribution_timeline": {
             "contributions": timeline_data,
         },
+        "ban_activity": user.ban_log.filter(
+            action_type=UserBanLog.ActionType.BANNED
+        ).first()
+        if request.user.is_superuser
+        else None,
     }
 
     return render(
         request,
         "contributors/profile.html",
         context,
+    )
+
+
+def log_user_ban(actor, target, reason):
+    action_type = (
+        UserBanLog.ActionType.UNBANNED
+        if target.is_active
+        else UserBanLog.ActionType.BANNED
+    )
+    UserBanLog.objects.create(
+        performed_by=actor,
+        performed_on=target,
+        action_reason=reason,
+        action_type=action_type,
     )
 
 
@@ -734,6 +753,7 @@ def toggle_active_user_status(request, username):
     user = get_object_or_404(User, username=username)
     user.is_active = not user.is_active
     user.save(update_fields=["is_active"])
+    log_user_ban(request.user, user, request.POST.get("action_reason", ""))
     return JsonResponse({"status": True})
 
 
